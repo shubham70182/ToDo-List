@@ -5,10 +5,14 @@ A simple task manager to help you organize your day. Add tasks, set dates, and k
 ## Features
 
 - Add tasks with start and due dates
+- Search tasks and sort them by due date or status
 - Move tasks between **To Do** and **Done** by checking them off
+- See completed-task progress and filter tasks by status or overdue date
+- Highlight overdue tasks
 - Double-click a task name to edit it
-- Delete individual tasks or clear all completed tasks
+- Confirm before deleting an individual task, or clear all completed tasks
 - Save tasks in your browser using local storage
+- Validate task dates before saving
 
 ## Built With
 

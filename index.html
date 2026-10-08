@@ -21,6 +21,11 @@
             margin-bottom: 20px;
         }
 
+        .progress-counter {
+            color: #4b5563;
+            font-size: 16px;
+        }
+
         .form {
             display: flex;
             gap: 10px;
@@ -47,11 +52,42 @@
             width: 280px;
         }
 
+        .task-tools {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .task-filters {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .task-tools input,
+        .task-tools select {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+
         button {
             padding: 10px 14px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
+        }
+
+        .filter-btn {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
         }
 
         #add-btn {
@@ -91,6 +127,22 @@
             margin-bottom: 10px;
         }
 
+        .overdue-task {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+
+        .overdue-label {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #fee2e2;
+            color: #b91c1c;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
         .task-top {
             display: flex;
             justify-content: space-between;
@@ -128,6 +180,7 @@
     <div class="container">
         <div class="top">
             <h1>Todo Board</h1>
+            <p class="progress-counter" id="progress-counter">Progress: 0 of 0 tasks completed</p>
         </div>
 
         <!-- Add new task form -->
@@ -143,14 +196,31 @@
             <button id="clear-btn">Clear Completed</button>
         </div>
 
+        <div class="task-tools">
+            <div class="task-filters" id="task-filters">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-filter="todo" aria-pressed="false">To Do</button>
+                <button class="filter-btn" data-filter="done" aria-pressed="false">Done</button>
+                <button class="filter-btn" data-filter="overdue" aria-pressed="false">Overdue</button>
+            </div>
+            <input id="search-tasks" type="search" placeholder="Search tasks or due dates">
+            <select id="sort-tasks" aria-label="Sort tasks">
+                <option value="default">Default order</option>
+                <option value="due-asc">Due date (earliest first)</option>
+                <option value="due-desc">Due date (latest first)</option>
+                <option value="todo-first">To Do first</option>
+                <option value="done-first">Done first</option>
+            </select>
+        </div>
+
         <!-- Kanban board -->
-        <div class="board">
-            <div class="column">
+        <div class="board" id="task-board">
+            <div class="column" id="todo-column">
                 <h3>To Do</h3>
                 <div id="todo-list"></div>
             </div>
 
-            <div class="column">
+            <div class="column" id="done-column">
                 <h3>Done</h3>
                 <div id="done-list"></div>
             </div>
